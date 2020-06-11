@@ -59,8 +59,11 @@
       <!-- Герой -->
       <section class="hero">
         <h1 class="hero-title">эффективные решения для вашего бизнеса</h1>
-        <a class="button hero-button link" href="">Заказать услугу</a>
+        <button class="button button-order" data-modal-open>
+          Заказать услугу
+        </button>
       </section>
+
       <!-- Features (Наши преимущества) -->
       <section class="section features">
         <div class="container">
@@ -557,17 +560,85 @@
             </li>
           </ul>
         </div>
-        <div class="footer-subscribe">
+
+        <!-- Форма с кнопкой -->
+        <form class="form-subscribe">
           <b class="subscribe-caption">подпишитесь на рассылку</b>
-          <a class="button subscribe-button link" href="">
-            Подписаться
-            <svg width="24" height="24">
-              <use href="./images/sprite.svg#icon-send"></use>
-            </svg>
-          </a>
-        </div>
+          <div class="subscribe-container">
+            <input
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              autocomplete="on"
+            />
+            <button class="button button-subscribe">
+              Подписаться
+              <svg width="24" height="24">
+                <use href="./images/sprite.svg#icon-send"></use>
+              </svg>
+            </button>
+          </div>
+        </form>
       </div>
       <p class="copyright">2020 | Developed by GoIT Students</p>
     </footer>
+
+    <!-- Модальное окно с формой -->
+    <div class="backdrop is-hidden" data-modal>
+      <form class="form-order">
+        <b class="form-order-title">
+          Оставьте свои данные, мы вам перезвоним
+        </b>
+
+        <div class="form-order-field">
+          <label for="name">Имя</label>
+          <input type="text" name="name" id="name" placeholder="Екатерина" />
+        </div>
+
+        <div class="form-order-field">
+          <label for="tel">Телефон</label>
+          <input
+            type="tel"
+            name="tel"
+            id="tel"
+            placeholder="+380**-000-00-00"
+          />
+        </div>
+
+        <div class="form-order-field">
+          <label for="email">Почта</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="my@ukr.net"
+          />
+        </div>
+
+        <div class="form-order-field comment">
+          <label for="comment">Комментарий</label>
+          <textarea name="comment" id="comment" placeholder="Уточните детали">
+          </textarea>
+        </div>
+
+        <div class="form-order-agreement">
+          <input type="checkbox" name="agreement" id="agreement" />
+          <label for="agreement">
+            Соглашаюсь с рассылкой и принимаю
+            <a href="">Условия договора</a>
+          </label>
+        </div>
+
+        <button type="submit" class="form-order-button">
+          Отправить
+        </button>
+        <br />
+
+        <br />
+        <button data-modal-close>Закрыть</button>
+      </form>
+    </div>
+
+    <script src="./js/modal.js"></script>
   </body>
 </html>
