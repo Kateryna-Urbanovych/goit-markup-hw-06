@@ -574,7 +574,7 @@
             <button class="button button-subscribe">
               Подписаться
               <svg width="24" height="24">
-                <use href="./images/sprite.svg#icon-send"></use>
+                <use href="./images/sprite.svg#icon-send-form"></use>
               </svg>
             </button>
           </div>
@@ -585,57 +585,80 @@
 
     <!-- Модальное окно с формой -->
     <div class="backdrop is-hidden" data-modal>
-      <form class="form-order">
+      <form class="form-order" autocomplete="off">
         <b class="form-order-title">
           Оставьте свои данные, мы вам перезвоним
         </b>
 
-        <div class="form-order-field">
-          <label for="name">Имя</label>
-          <input type="text" name="name" id="name" placeholder="Екатерина" />
-        </div>
+        <label class="form-order-field">
+          <input class="input" type="text" name="name" placeholder=" " />
+          <span class="label">Имя</span>
+          <svg class="icon-form" width="18" height="18">
+            <use href="./images/sprite.svg#icon-person-form"></use>
+          </svg>
+        </label>
 
-        <div class="form-order-field">
-          <label for="tel">Телефон</label>
-          <input
-            type="tel"
-            name="tel"
-            id="tel"
-            placeholder="+380**-000-00-00"
-          />
-        </div>
+        <label class="form-order-field">
+          <input class="input" type="tel" name="tel" placeholder=" " />
+          <span class="label">Телефон</span>
+          <svg class="icon-form" width="18" height="18">
+            <use href="./images/sprite.svg#icon-phone-form"></use>
+          </svg>
+        </label>
 
-        <div class="form-order-field">
-          <label for="email">Почта</label>
+        <label class="form-order-field">
           <input
+            class="input"
             type="email"
             name="email"
-            id="email"
-            placeholder="my@ukr.net"
+            placeholder=" "
+            autocomplete="on"
           />
-        </div>
+          <span class="label">Почта</span>
+          <svg class="icon-form" width="18" height="18">
+            <use href="./images/sprite.svg#icon-email-form"></use>
+          </svg>
+        </label>
 
-        <div class="form-order-field comment">
-          <label for="comment">Комментарий</label>
-          <textarea name="comment" id="comment" placeholder="Уточните детали">
-          </textarea>
-        </div>
+        <label class="form-order-field comment">
+          <textarea class="textarea" name="comment" placeholder=" "></textarea>
+          <span class="label-comment">Коментарий</span>
+        </label>
+
+        <!-- checkbox при помощи span -->
+
+        <!-- <label class="form-order-agreement">
+          <input class="input input-check" type="checkbox" name="agreement" />
+          <span class="icon-check-form"></span>
+          Соглашаюсь с рассылкой и принимаю&nbsp;
+          <a class="contract-link" href="">Условия договора</a>
+        </label> -->
+
+        <!-- checkbox при помощи псевдоэлемента before -->
 
         <div class="form-order-agreement">
-          <input type="checkbox" name="agreement" id="agreement" />
-          <label for="agreement">
-            Соглашаюсь с рассылкой и принимаю
-            <a href="">Условия договора</a>
+          <input
+            class="input input-check"
+            type="checkbox"
+            name="agreement"
+            id="agreement"
+          />
+          <label class="label-check" for="agreement">
+            Соглашаюсь с рассылкой и принимаю&nbsp;
+            <a class="contract-link" href="">Условия договора</a>
           </label>
         </div>
 
         <button type="submit" class="form-order-button">
           Отправить
         </button>
-        <br />
 
-        <br />
-        <button data-modal-close>Закрыть</button>
+        <!-- Кнопка Закрыть -->
+        <button class="icon-close-form" data-modal-close>
+          <svg width="18" height="18">
+            <use href="./images/sprite.svg#icon-close-form"></use>
+          </svg>
+        </button>
       </form>
     </div>
 

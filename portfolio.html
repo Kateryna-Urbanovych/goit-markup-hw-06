@@ -346,15 +346,25 @@
             </li>
           </ul>
         </div>
-        <div class="footer-subscribe">
+
+        <!-- Форма с кнопкой -->
+        <form class="form-subscribe">
           <b class="subscribe-caption">подпишитесь на рассылку</b>
-          <a class="button subscribe-button link" href="">
-            Подписаться
-            <svg width="24" height="24">
-              <use href="./images/sprite.svg#icon-send"></use>
-            </svg>
-          </a>
-        </div>
+          <div class="subscribe-container">
+            <input
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              autocomplete="on"
+            />
+            <button class="button button-subscribe">
+              Подписаться
+              <svg width="24" height="24">
+                <use href="./images/sprite.svg#icon-send-form"></use>
+              </svg>
+            </button>
+          </div>
+        </form>
       </div>
       <p class="copyright">2020 | Developed by GoIT Students</p>
     </footer>
