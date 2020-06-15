@@ -32,6 +32,7 @@
   --footer-bottom-text-color: rgba(255, 255, 255, 0.4);
 
   --backdrop: rgba(0, 0, 0, 0.2);
+  --form-order-border: rgba(33, 33, 33, 0.2);
 }
 
 body {
@@ -300,15 +301,6 @@ img {
   display: inline-flex;
   font-weight: 700;
   padding: 10px 32px;
-}
-
-.button.button-subscribe {
-  display: flex;
-  position: relative;
-  font-weight: 900;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 28px 10px 29px;
 }
 
 /* Секция Features (Наши преимущества) */
@@ -713,7 +705,11 @@ img {
   background-color: var(--accent-color);
 }
 
-/* Новая форма с кнопкой */
+/* Форма с кнопкой */
+
+.subscribe-container {
+  display: flex;
+}
 
 .form-subscribe input {
   width: 358px;
@@ -737,8 +733,13 @@ img {
   letter-spacing: 0.03em;
 }
 
-.subscribe-container {
+.button.button-subscribe {
   display: flex;
+  position: relative;
+  font-weight: 900;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 28px 10px 29px;
 }
 
 /* Copyright */
@@ -757,24 +758,27 @@ img {
 }
 
 /* Модальное окно с формой */
+
 .backdrop {
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2;
 
-  background: var(--backdrop);
+  background-color: var(--backdrop);
 
   opacity: 1;
-  transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* .backdrop.is-hidden {
+.backdrop.is-hidden {
   opacity: 0;
+  transform: scale(0.9);
   pointer-events: none;
-} */
+}
 
 .form-order {
   position: absolute;
@@ -790,11 +794,17 @@ img {
   border-radius: 4px;
   box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 1px 3px rgba(0, 0, 0, 0.12);
+
+  font-size: 14px;
+  line-height: 1.14;
+  letter-spacing: 0.01em;
+
+  color: var(--primery-text-color);
 }
 
 .form-order-title {
-  display: inline-block;
-  text-align: justify;
+  display: flex;
+  justify-content: center;
   margin-bottom: 30px;
   font-size: 20px;
   line-height: 1.15;
@@ -802,27 +812,195 @@ img {
   color: var(--title-text-color);
 }
 
+/* Имя Телефон Почта */
+
 .form-order-field {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  position: relative;
   margin-bottom: 28px;
 }
+
+.icon-form {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+
+  fill: var(--title-text-color);
+
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:focus ~ .icon-form,
+.input:not(:placeholder-shown) ~ .icon-form {
+  fill: var(--accent-color);
+}
+
+.label {
+  position: absolute;
+  top: 50%;
+  left: 42px;
+  transform: translateY(-50%);
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:focus + .label,
+.input:not(:placeholder-shown) + .label {
+  transform: translate(-26px, -33px) translateY(-50%);
+  color: var(--accent-color);
+}
+
+.input {
+  width: 100%;
+  height: 40px;
+  padding-left: 42px;
+
+  border: 1px solid var(--form-order-border);
+  border-radius: 4px;
+
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input:focus,
+.input:not(:placeholder-shown) {
+  border-color: var(--accent-color);
+  outline: none;
+  background-color: var(--white-color);
+}
+
+/* Комментарий */
 
 .form-order-field.comment {
   margin-bottom: 20px;
 }
 
-.form-order textarea {
-  resize: none;
-  height: 120px;
+.label-comment {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.form-order-field.comment:focus-within .label-comment,
+.textarea:not(:placeholder-shown) + .label-comment {
+  transform: translateY(-33px);
+  color: var(--accent-color);
+}
+
+.textarea {
+  resize: none;
+  width: 100%;
+  height: 120px;
+  padding: 12px 16px;
+
+  border: 1px solid var(--form-order-border);
+  border-radius: 4px;
+
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.textarea:focus,
+.textarea:not(:placeholder-shown) {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+/* Соглашение с рассылкой */
 
 .form-order-agreement {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 30px;
+
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.03em;
+  color: var(--primery-text-color);
 }
 
+.contract-link {
+  color: var(--accent-color);
+}
+
+.input-check {
+  /* -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: absolute; */
+
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* checkbox при помощи span */
+
+/* .icon-check-form {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 8.5px;
+
+  border: 2px solid var(--title-text-color);
+  border-radius: 2px;
+  background-color: var(--white-color);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-check:checked + .icon-check-form {
+  background-color: var(--accent-color);
+  background-image: url(../images/check-form.svg);
+  background-size: contain;
+  background-origin: border-box;
+  border-color: var(--accent-color);
+} */
+
+/* checkbox при помощи псевдоэлемента before */
+
+.label-check {
+  display: flex;
+  align-items: center;
+}
+
+.label-check::before {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 8.5px;
+
+  border: 2px solid var(--title-text-color);
+  border-radius: 2px;
+  background-color: var(--white-color);
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.input-check:checked + .label-check::before {
+  background-color: var(--accent-color);
+  background-image: url(../images/check-form.svg);
+  background-size: contain;
+  background-origin: border-box;
+  border-color: var(--accent-color);
+}
+
+/* Кнопка Отправить */
+
 .form-order-button {
+  display: block;
   margin-left: auto;
   margin-right: auto;
   padding: 10px 55px 10px 56px;
@@ -836,4 +1014,27 @@ img {
 
   color: var(--white-color);
   background-color: var(--accent-color);
+}
+
+/* Кнопка Закрыть */
+
+.icon-close-form {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(30%, -30%);
+  /* transform: translate(9px, -9px); */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 30px;
+  height: 30px;
+
+  background-color: var(--white-color);
+  border-radius: 50%;
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 1px 3px rgba(0, 0, 0, 0.12);
+  border: none;
 }
